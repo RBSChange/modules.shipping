@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script>
+  <binding fileName="modules/useractionlogger/persistentdocument/import/useractionlogger_binding.xml"/>
+  <actiondef modulename="shipping" actionname="savepermissions.rootfolder" label="modules.shipping.bo.useractionlogger.savepermissions-rootfolder"/>
+  <actiondef modulename="shipping" actionname="insert.folder" label="modules.shipping.bo.useractionlogger.insert-folder"/>
+  <actiondef modulename="shipping" actionname="update.folder" label="modules.shipping.bo.useractionlogger.update-folder"/>
+  <actiondef modulename="shipping" actionname="savepermissions.folder" label="modules.shipping.bo.useractionlogger.savepermissions-folder"/>
+  <actiondef modulename="shipping" actionname="insert.mode" label="modules.shipping.bo.useractionlogger.insert-mode"/>
+  <actiondef modulename="shipping" actionname="deactivated.mode" label="modules.shipping.bo.useractionlogger.deactivated-mode"/>
+  <actiondef modulename="shipping" actionname="reactivate.mode" label="modules.shipping.bo.useractionlogger.reactivate-mode"/>
+  <actiondef modulename="shipping" actionname="updatetranslation.mode" label="modules.shipping.bo.useractionlogger.updatetranslation-mode"/>
+  <actiondef modulename="shipping" actionname="deletelocalization.mode" label="modules.shipping.bo.useractionlogger.deletelocalization-mode"/>
+  <actiondef modulename="shipping" actionname="delete.mode" label="modules.shipping.bo.useractionlogger.delete-mode"/>
+  <actiondef modulename="shipping" actionname="delete.folder" label="modules.shipping.bo.useractionlogger.delete-folder"/>
+</script>
