@@ -25,6 +25,9 @@
 			<permission name="ReActivate.*" />
 			<permission name="LoadTags" />
 		</role>
+		<role name="Guest" extend="User">
+			<permission name="Enabled" />
+		</role>
 		<role name="User">
 			<permission name="List.*" />
 		</role>
