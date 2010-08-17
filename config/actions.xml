@@ -30,6 +30,11 @@
     <body><![CDATA[this.createDocumentEditor('modules_shipping_mode', listWidget.getSelectedItems()[0].id);]]></body>
   </action>
   
+  <action name="createVirtualMode">
+    <parameter name="listWidget"/>
+    <body><![CDATA[this.createDocumentEditor('modules_shipping_virtualmode', listWidget.getSelectedItems()[0].id);]]></body>
+  </action>
+  
  	<action name="openOrderMode">
 		<parameter name="listWidget" />
 		<body><![CDATA[

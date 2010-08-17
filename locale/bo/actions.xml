@@ -7,6 +7,10 @@
   </entity>
   <entity id="Create-Mode">
     <locale lang="fr">créer un mode de livraison</locale>
-    <locale lang="en">Create sipping mode</locale>
+    <locale lang="en">create sipping mode</locale>
+  </entity>
+  <entity id="Create-VirtualMode">
+    <locale lang="fr">créer un mode de livraison virtuel</locale>
+    <locale lang="en">create virtual sipping mode</locale>
   </entity>
 </localization>

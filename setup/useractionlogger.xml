@@ -12,4 +12,9 @@
   <actiondef modulename="shipping" actionname="deletelocalization.mode" label="modules.shipping.bo.useractionlogger.deletelocalization-mode"/>
   <actiondef modulename="shipping" actionname="delete.mode" label="modules.shipping.bo.useractionlogger.delete-mode"/>
   <actiondef modulename="shipping" actionname="delete.folder" label="modules.shipping.bo.useractionlogger.delete-folder"/>
+  <actiondef modulename="shipping" actionname="insert.virtualmode" label="modules.shipping.bo.useractionlogger.insert-virtualmode"/>
+  <actiondef modulename="shipping" actionname="update.virtualmode" label="modules.shipping.bo.useractionlogger.update-virtualmode"/>
+  <actiondef modulename="shipping" actionname="deactivated.virtualmode" label="modules.shipping.bo.useractionlogger.deactivated-virtualmode"/>
+  <actiondef modulename="shipping" actionname="reactivate.virtualmode" label="modules.shipping.bo.useractionlogger.reactivate-virtualmode"/>
+  <actiondef modulename="shipping" actionname="delete.virtualmode" label="modules.shipping.bo.useractionlogger.delete-virtualmode"/>
 </script>

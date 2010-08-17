@@ -13,6 +13,9 @@
 			<media
 				path="modules/shipping/setup/sample/ups.gif"
 				label="UPS" id="ups_visual" />	
+			<media
+				path="modules/shipping/setup/sample/download_icon.gif"
+				label="Download" id="download_visual" />
 			
 		</folder>
 	</rootfolder>
@@ -31,6 +34,11 @@
 				  description="Livraison UPS"
 				  code="UPS" codeReference="UPS"
 				  trackingUrl="http://wwwapps.ups.com/WebTracking/track?loc=fr_FR&amp;loc=fr_FR&amp;trackNums={NumeroColis}" />
+				  
+			<virtualmode byLabel="Download" label="Download"
+				  visual-refid="download_visual"
+				  description="Telechargement"
+				  code="DWL" codeReference="DWL" />
 		</folder>
 	</rootfolder>
 </script>

@@ -5,12 +5,14 @@
 			<children>
 				<child model="modules_generic/folder"/>
 				<child model="modules_shipping/mode"/>
+				<child model="modules_shipping/virtualmode"/>
 			</children>
 			<contextactions>
 				<contextaction name="edit"/>
 				<groupactions name="create_">
 					<contextaction name="createMode"/>
-					<contextaction name="createFolder"/>
+					<contextaction name="createVirtualMode"/>
+					<contextaction name="createFolder"/>		
 				</groupactions>
 				<contextaction name="openOrderMode"/>
 			</contextactions>
@@ -18,13 +20,15 @@
 		<model name="modules_generic/folder">
 			<children>
 				<child model="modules_generic/folder"/>
-				<child model="modules_shipping/mode"/>			
+				<child model="modules_shipping/mode"/>	
+				<child model="modules_shipping/virtualmode"/>		
 			</children>
 			<contextactions>				
 				<contextaction name="edit"/>
 				<contextaction name="delete"/>
 				<groupactions name="create_">
 					<contextaction name="createMode"/>
+					<contextaction name="createVirtualMode"/>
 					<contextaction name="createFolder"/>
 				</groupactions>
 				<contextaction name="openOrderMode"/>
@@ -32,6 +36,14 @@
 			</contextactions>
 		</model>
 		<model name="modules_shipping/mode">
+			<contextactions>				
+				<contextaction name="edit"/>
+				<contextaction name="delete"/>
+				<contextaction name="deactivated"/>
+				<contextaction name="reactivate"/>
+			</contextactions>
+		</model>
+		<model name="modules_shipping/virtualmode">
 			<contextactions>				
 				<contextaction name="edit"/>
 				<contextaction name="delete"/>
@@ -60,5 +72,6 @@
 		<action name="create_" actions="createMode,createFolder" icon="add"/>
 		<action name="createMode" single="true" permission="Insert_mode" icon="add" label="&amp;modules.shipping.bo.actions.Create-Mode;"/>
 		<action name="createFolder" single="true" permission="Insert_folder" icon="create-folder" label="&amp;modules.uixul.bo.actions.Create-folder;"/>
+		<action name="createVirtualMode" single="true" permission="Insert_virtualmode" icon="add" label="&amp;modules.shipping.bo.actions.Create-VirtualMode;"/>
 	</actions>
 </perspective>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<localization extend="modules.shipping.document.mode">
+  <entity id="document-name">
+    <locale lang="fr">virtualmode</locale>
+    <locale lang="en">virtualmode</locale>
+  </entity>
+</localization>
