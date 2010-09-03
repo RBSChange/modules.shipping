@@ -8,12 +8,19 @@
     <locale lang="fr">libellé</locale>
     <locale lang="en">label</locale>
   </entity>
+  <entity id="label-help">
+    <locale lang="fr">libellé du mode d'envoi, utilisé en backoffice et sur les sites pour identifier le mode.</locale>
+  </entity>
   <entity id="visual">
     <locale lang="fr">visuel</locale>
     <locale lang="en">visual</locale>
   </entity>
   <entity id="description">
     <locale lang="fr">description</locale>
+    <locale lang="en">description</locale>
+  </entity>
+    <entity id="description-help">
+    <locale lang="fr">la description du mode est affichée dans l'étape de sélection du mode de livraison du processus de commande.</locale>
     <locale lang="en">description</locale>
   </entity>
   <entity id="codeReference">
@@ -25,7 +32,7 @@
     <locale lang="en">code</locale>
   </entity>
   <entity id="code-help">
-    <locale lang="fr">code</locale>
+    <locale lang="fr">Code identifiant le mode de livraison, utilisable pour identifier le mode dans les exports de commandes.</locale>
     <locale lang="en">code</locale>
   </entity>
   <entity id="trackingUrl">
@@ -33,7 +40,7 @@
     <locale lang="en">package tracking URL</locale>
   </entity>
   <entity id="trackingUrl-help">
-    <locale lang="fr">Cette adresse URL permet à vos clients de suivre en direct sur Internet le suivi de leur colis. Pour indiquer où doit être placé le numéro de suivi dans cette adresse, utilisez le marqueur {NumeroColis} : il sera remplacé par le numéro de colis renseigné dans la commande.</locale>
+    <locale lang="fr">Cette adresse URL permet à vos clients de suivre en direct sur Internet l'expédition de leur colis. Pour indiquer où doit être placé le numéro de suivi dans cette adresse, utilisez le marqueur {NumeroColis} : il sera remplacé par le numéro de colis renseigné dans la commande.</locale>
     <locale lang="en">This URL address lets your customers track their package in real time. To specify where the tracking number should be placed, use the {NumeroColis} tag: it will be replaced by the tracking number set in the order.</locale>
   </entity>
 </localization>
