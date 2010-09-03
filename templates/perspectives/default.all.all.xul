@@ -15,7 +15,4 @@
 		</vbox>
 		<tal:block change:documenteditors="module shipping" />				
 	</deck>
-	<splitter collapse="after">
-		<wsplitterbutton />
-	</splitter>
 </hbox>
