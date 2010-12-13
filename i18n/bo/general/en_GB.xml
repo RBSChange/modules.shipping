@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.shipping.bo.general" lcid="en_GB">
+  <key id="module-name">shipping modes</key>
+  <key id="tree-root-name">shipping modes</key>
+  <key id="system-folder-name">shipping modes</key>
+</i18n>

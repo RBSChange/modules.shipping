@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.shipping.bo.actions" lcid="fr_FR">
+  <key id="create_">créer</key>
+  <key id="create-mode">créer un mode de livraison</key>
+  <key id="create-virtualmode">créer un mode de livraison virtuel</key>
+</i18n>
