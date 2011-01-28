@@ -73,4 +73,17 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	{
 		
 	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $document
+	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @return void
+	 */
+	protected function preSave($document, $parentNodeId)
+	{
+		$document->setCodeReference($document->getCode());
+	}
+
+	
+	
 }
