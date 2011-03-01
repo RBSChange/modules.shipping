@@ -18,4 +18,5 @@
   <actiondef modulename="shipping" actionname="reactivate.virtualmode" label="modules.shipping.bo.useractionlogger.reactivate-virtualmode"/>
   <actiondef modulename="shipping" actionname="delete.virtualmode" label="modules.shipping.bo.useractionlogger.delete-virtualmode"/>
   <actiondef modulename="shipping" actionname="update.mode" label="m.shipping.bo.useractionlogger.update-mode"/>
+  <actiondef modulename="shipping" actionname="update.kialamode" label="m.shipping.bo.useractionlogger.update-kialamode"/>
 </script>

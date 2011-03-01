@@ -34,4 +34,6 @@
   <key id="log-delete-virtualmode">log-delete-virtualmode</key>
   <key id="update-mode">update.mode {lang} {documentlabel}</key>
   <key id="log-update-mode">log update mode</key>
+  <key id="update-kialamode">update.kialamode {lang} {documentlabel}</key>
+  <key id="log-update-kialamode">log update kialamode</key>
 </i18n>
