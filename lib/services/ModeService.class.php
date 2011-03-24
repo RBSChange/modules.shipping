@@ -84,6 +84,13 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 		$document->setCodeReference($document->getCode());
 	}
 
-	
-	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @return array<string, string>
+	 */
+	public function getNotificationParameters($mode, $expedition)
+	{
+		return array();
+	}
 }
