@@ -2,6 +2,10 @@
 <perspective>
 	<models>
 		<model name="modules_generic/rootfolder">
+			<drops>
+				<drop model="modules_shipping/mode" action="move" />
+				<drop model="modules_shipping/virtualmode" action="move" />
+			</drops>
 			<children>
 				<child model="modules_generic/folder"/>
 				<child model="modules_shipping/mode"/>
@@ -18,6 +22,10 @@
 			</contextactions>
 		</model>
 		<model name="modules_generic/folder">
+			<drops>
+				<drop model="modules_shipping/mode" action="move" />
+				<drop model="modules_shipping/virtualmode" action="move" />
+			</drops>
 			<children>
 				<child model="modules_generic/folder"/>
 				<child model="modules_shipping/mode"/>	

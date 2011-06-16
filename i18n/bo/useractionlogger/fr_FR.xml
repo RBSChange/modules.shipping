@@ -36,4 +36,8 @@
   <key id="log-update-mode">log update mode</key>
   <key id="update-kialamode">update.kialamode {lang} {documentlabel}</key>
   <key id="log-update-kialamode">log update kialamode</key>
+  <key id="move-virtualmode">move.virtualmode {destinationlabel} {lang} {documentlabel}</key>
+  <key id="log-move-virtualmode">log move virtualmode</key>
+  <key id="move-mode">move.mode {destinationlabel} {lang} {documentlabel}</key>
+  <key id="log-move-mode">log move mode</key>
 </i18n>
