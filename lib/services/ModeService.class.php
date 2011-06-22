@@ -53,12 +53,108 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	}
 	
 	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param integer $countryId
+	 * @return boolean
+	 */
+	public function isValidForCountryId($mode, $countryId)
+	{
+		if ($mode->getDeliveryZoneCount() === 0)
+		{
+			return true;
+		}
+		$zcs = zone_CountryService::getInstance();
+		foreach ($mode->getDeliveryZoneArray() as $zone)
+		{
+			$countries = $zcs->getCountries($zone);
+			foreach ($countries as $country) 
+			{
+				if ($country->getId() == $countryId)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param shipping_persistentdocument_mode $mode
+	 * @return zone_persistentdocument_country[]
+	 */
+	public function getDeliveryCountries($mode)
+	{
+		$zcs = zone_CountryService::getInstance();
+		if ($mode->getDeliveryZoneCount() === 0)
+		{
+			return $zcs->getPublished(Order::asc('label'));
+		}
+		$result = array();
+		foreach ($mode->getDeliveryZoneArray() as $zone)
+		{
+			$countries = $zcs->getCountries($zone);
+			foreach ($countries as $country) 
+			{
+				$result[strtolower($country->getLabel())] = $country;
+			}
+		}
+		ksort($result);
+		return array_values($result);
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode[] $modes
+	 * @return zone_persistentdocument_country[]
+	 */
+	public function getDeliveryCountriesForModes($modes)
+	{
+		$zcs = zone_CountryService::getInstance();
+		$result = array();
+		$zones = array();
+		
+		foreach ($modes as $mode) 
+		{
+			if ($mode->getDeliveryZoneCount() === 0)
+			{
+				$countries = $zcs->getPublished(Order::asc('label'));
+				foreach ($countries as $country) 
+				{
+					$result[strtolower($country->getLabel())] = $country;
+				}
+				break;
+			}
+			
+			foreach ($mode->getDeliveryZoneArray() as $zone)
+			{
+				$zones[$zone->getId()] = $zone;
+			}
+		}
+		
+		if (count($result) === 0 && count($zones) > 0)
+		{
+			foreach ($zones as $zone)
+			{
+				$countries = $zcs->getCountries($zone);
+				foreach ($countries as $country) 
+				{
+					$result[strtolower($country->getLabel())] = $country;
+				}
+			}
+		}
+		
+		ksort($result);
+		return array_values($result);
+	}
+	
+	
+	/**
 	 * @param order_persistentdocument_expedition $expedition
 	 * @param shipping_persistentdocument_mode $mode
 	 */
 	public function completeExpedtionForMode($expedition, $mode)
 	{
-		Framework::info(__METHOD__);
+
 		$expedition->setShippingModeId($mode->getId());
 		$expedition->setTransporteur($mode->getCodeReference());
 		$expedition->setTrackingURL($mode->getTrackingUrl());

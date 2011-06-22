@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/1.0.xsd"
-	model-version="1.0" icon="shipping" has-url="false" publish-on-day-change="false" indexable="false" backoffice-indexable="false">
-	<properties>
-		<add name="visual" type="modules_media/media" />
-		<add name="description" type="LongString" localized="true" />
-		<add name="code" type="String" db-size="20" min-occurs="1" />
-		<add name="codeReference" type="String" db-size="50" default-value="Shipping mode" />
-		<add name="trackingUrl" type="String" />
-	</properties>
-	<statuses default="ACTIVE" />
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/3.5.xsd" model-version="1.0" icon="shipping" has-url="false" publish-on-day-change="false" indexable="false" backoffice-indexable="false">
+  <properties>
+    <add name="visual" type="modules_media/media"/>
+    <add name="description" type="LongString" localized="true"/>
+    <add name="code" type="String" db-size="20" min-occurs="1"/>
+    <add name="codeReference" type="String" db-size="50" default-value="Shipping mode"/>
+    <add name="trackingUrl" type="String"/>
+    <add name="addressRequired" type="Boolean" default-value="true"/>
+    <add name="deliveryZone" type="modules_zone/zone" max-occurs="-1"/>
+  </properties>
+  <statuses default="ACTIVE"/>
 </document>

@@ -5,5 +5,8 @@
 		<field name="code" />
 		<field name="trackingUrl" />
 		<field name="description" />
+		<field name="visual" />
+		<field name="addressRequired" />
+		<field name="deliveryZone" moduleselector ="zone" allow="[modules_zone/zone]"/>
 	</section>
 </panel>
