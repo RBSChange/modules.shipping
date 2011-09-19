@@ -1,6 +1,0 @@
-treechildren::-moz-tree-image(modules_shipping_mode){
-	list-style-image: url(/changeicons/small/shipping.png);
-}
-treechildren::-moz-tree-image(modules_shipping_virtualmode){
-	list-style-image: url(/changeicons/small/shipping.png);
-}
