@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <i18n baseKey="m.shipping.bo.actions" lcid="en_GB">
   <key id="create_">create</key>
-  <key id="create-mode">create sipping mode</key>
-  <key id="create-virtualmode">create virtual sipping mode</key>
+  <key id="create-mode">create a shipping method</key>
+  <key id="create-virtualmode">create virtual shipping method</key>
 </i18n>
