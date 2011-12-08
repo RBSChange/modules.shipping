@@ -52,14 +52,12 @@ class shipping_VirtualmodeService extends shipping_ModeService
 		return $this->pp->createQuery('modules_shipping/virtualmode', false);
 	}
 	
-	
 	/**
 	 * @param order_persistentdocument_expedition $expedition
 	 * @param shipping_persistentdocument_mode $mode
 	 */
 	public function completeExpedtionForMode($expedition, $mode)
 	{
-		Framework::info(__METHOD__);
 		parent::completeExpedtionForMode($expedition, $mode);
 		$expedition->setStatus(order_ExpeditionService::SHIPPED);
 		$expedition->setShippingDate(date_Calendar::getInstance()->toString());
@@ -67,6 +65,7 @@ class shipping_VirtualmodeService extends shipping_ModeService
 		$order = $expedition->getOrder();
 		$trackingNumber = $order->getId() . ' - ' . $order->getCustomer()->getUser()->getId();	
 		$expedition->setTrackingNumber(md5($trackingNumber));
+		$expedition->setTrackingURL(null);
 	}
 	
 	/**
@@ -76,9 +75,7 @@ class shipping_VirtualmodeService extends shipping_ModeService
 	 */	
 	public function completeExpeditionLineForDisplay($expeditionLine, $shippmentMode, $expedition)
 	{
-		Framework::info(__METHOD__);
 		parent::completeExpeditionLineForDisplay($expeditionLine, $shippmentMode, $expedition);
-		
 		$product = $expeditionLine->getProduct();
 		if ($product instanceof catalog_persistentdocument_virtualproduct)
 		{
@@ -87,6 +84,35 @@ class shipping_VirtualmodeService extends shipping_ModeService
 			$url = $media->getDocumentService()->generateDownloadUrl($media, $media->getLang(), $parameters);
 			$expeditionLine->setURL($url);
 		}
-		
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_virtualmode $mode
+	 * @param order_persistentdocument_order $order
+	 * @param order_CartInfo $cartInfo
+	 * @param boolean $setDefault
+	 * @return boolean true if shippingAddress property was set on order.
+	 */
+	public function setShippingAddress($mode, $order, $cartInfo, $setDefault = true)
+	{
+		if ($setDefault)
+		{
+			$order->setShippingAddress(null);
+		} 
+		return false;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @return website_persistentdocument_page
+	 */
+	public function getDisplayPageForExpedition($mode, $expedition)
+	{
+		$order = $expedition->getOrder();
+		$tag = 'contextual_website_website_modules_order_expeditionvirtual';
+		$website = $order->getWebsite();
+		$page = TagService::getInstance()->getDocumentByContextualTag($tag, $website, false);
+		return $page !== null ? $page : false;
 	}
 }

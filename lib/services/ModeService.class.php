@@ -189,4 +189,61 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	{
 		return array();
 	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_order $order
+	 * @param order_CartInfo $cartInfo
+	 * @param boolean $setDefault
+	 * @return boolean true if shippingAddress property was set on order.
+	 */
+	public function setShippingAddress($mode, $order, $cartInfo, $setDefault = true)
+	{
+		if (!$setDefault)
+		{
+			return false;
+		}
+		
+		$shippingAddress = $order->getShippingAddress();
+		if ($cartInfo->getAddressInfo()->useSameAddressForBilling)
+		{
+			if ($shippingAddress !== $order->getBillingAddress())
+			{
+				$order->setShippingAddress(null);
+			}
+			return true;
+		}
+
+		if ($shippingAddress === null || $shippingAddress === $order->getBillingAddress())		
+		{
+			$shippingAddress = customer_AddressService::getNewDocumentInstance();
+			$order->setShippingAddress($shippingAddress);
+		}		
+		$cartInfo->getAddressInfo()->exportShippingAddress($shippingAddress);
+		$shippingAddress->setPublicationstatus('FILED');
+		$shippingAddress->save();	
+		$cartInfo->setShippingAddressId($shippingAddress->getId());
+		return true;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @see order_ExpeditionService::shipExpedition
+	 */
+	public function completeExpeditionForShipping($mode, $expedition)
+	{
+		// Nothing to do by default.
+		// Ici mettre à jour les propriétés de l'expédition. L'expédition sera sauvegardée juste après.
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @return website_persistentdocument_page
+	 */
+	public function getDisplayPageForExpedition($mode, $expedition)
+	{
+		return null;
+	}
 }
