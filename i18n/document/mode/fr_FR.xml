@@ -12,8 +12,8 @@
   <key id="trackingurl">URL de suivi des colis</key>
   <key id="trackingurl-help">Cette adresse URL permet à vos clients de suivre en direct sur Internet l'expédition de leur colis. Pour indiquer où doit être placé le numéro de suivi dans cette adresse, utilisez le marqueur {NumeroColis} : il sera remplacé par le numéro de colis renseigné dans la commande.</key>
   
-  <key id="addressRequired">Adresse de livraison</key>
-  <key id="addressRequired-help">l'adresse de livraison est obligatoire</key>
+  <key id="addressrequired">Adresse de livraison</key>
+  <key id="addressrequired-help">l'adresse de livraison est obligatoire</key>
   
   <key id="deliveryzone">Zones de livraison</key>
   <key id="deliveryzone-help">Zones de livraison autorisées</key>
