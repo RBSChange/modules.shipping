@@ -189,4 +189,24 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	{
 		return array();
 	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $document
+	 * @param string $errorMessage
+	 */
+	public function canBeFiled($document, &$errorMessage)
+	{
+		$ms = ModuleService::getInstance();
+		if ($ms->moduleExists('catalog'))
+		{
+			$sfs = catalog_ShippingfilterService::getInstance();
+			$query = $sfs->createQuery()->add(Restrictions::eq('mode', $document))->setProjection(Projections::rowCount('count'));
+			if (f_util_ArrayUtils::firstElement($query->findColumn('count')) > 0)
+			{
+				$errorMessage = LocaleService::getInstance()->transBO('m.shipping.bo.general.used-in-filters');
+				return false;
+			}
+		}
+		return true;
+	}
 }
