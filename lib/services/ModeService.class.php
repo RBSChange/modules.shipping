@@ -154,7 +154,6 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */
 	public function completeExpedtionForMode($expedition, $mode)
 	{
-
 		$expedition->setShippingModeId($mode->getId());
 		$expedition->setTransporteur($mode->getCodeReference());
 		$expedition->setTrackingURL($mode->getTrackingUrl());
@@ -167,7 +166,10 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */	
 	public function completeExpeditionLineForDisplay($expeditionLine, $shippmentMode, $expedition)
 	{
-		
+		if ($expeditionLine->getTrackingURL() === null)
+		{
+			$expeditionLine->setTrackingURL($expedition->getOriginalTrackingURL());
+		}
 	}
 	
 	/**
@@ -265,5 +267,18 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 			}
 		}
 		return true;
+	}
+	
+	/**	
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @param boolean $completlyShipped
+	 * @return string
+	 */
+	public function sendShippedNotification($mode, $expedition, $completlyShipped = false)
+	{
+		$codeName = 'modules_order/expedition_shipped';
+		$suffix = $expedition->getTransporteur();
+		order_ModuleService::getInstance()->sendCustomerSuffixedNotification($codeName, $suffix, $expedition->getOrder(), $expedition->getBill(), $expedition);
 	}
 }
