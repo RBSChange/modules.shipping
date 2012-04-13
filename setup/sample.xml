@@ -6,7 +6,7 @@
 	<binding fileName="modules/media/persistentdocument/import/media_binding.xml" />
 	
 	<rootfolder module="media">
-		<folder label="Exemples">
+		<folder byLabel="m.generic.bo.general.samples">
 			<media
 				path="modules/shipping/setup/sample/banner.gif"
 				label="Coliposte" id="coliposte_visual" />
@@ -22,7 +22,7 @@
 	
 	<!--  Begin -->
 	<rootfolder module="shipping">
-		<folder byLabel="Exemples">
+		<folder byLabel="m.generic.bo.general.samples">
 			<mode byLabel="Colissimo"
 				  visual-refid="coliposte_visual"
 				  description="Livraison ColiPoste"
