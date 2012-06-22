@@ -6,7 +6,7 @@
 	<binding fileName="modules/media/persistentdocument/import/media_binding.xml" />
 	
 	<rootfolder module="media">
-		<folder label="Exemples">
+		<folder byLabel="m.generic.bo.general.samples">
 			<media
 				path="modules/shipping/setup/sample/banner.gif"
 				label="Coliposte" id="coliposte_visual" />
@@ -22,23 +22,23 @@
 	
 	<!--  Begin -->
 	<rootfolder module="shipping">
-		<folder byLabel="Exemples">
+		<folder byLabel="m.generic.bo.general.samples">
 			<mode byLabel="Colissimo"
-				  visual-refid="coliposte_visual"
-				  description="Livraison ColiPoste"
-				  code="ColiPoste" codeReference="ColiPoste"
-				  trackingUrl="http://www.coliposte.net/gp/services/main.jsp?m=10003005&amp;colispart={NumeroColis}" />
-				  
+				visual-refid="coliposte_visual"
+				description="Livraison ColiPoste"
+				code="ColiPoste" codeReference="ColiPoste"
+				trackingUrl="http://www.coliposte.net/gp/services/main.jsp?m=10003005&amp;colispart={NumeroColis}" />
+			
 			<mode byLabel="UPS"
-				  visual-refid="ups_visual"
-				  description="Livraison UPS"
-				  code="UPS" codeReference="UPS"
-				  trackingUrl="http://wwwapps.ups.com/WebTracking/track?loc=fr_FR&amp;loc=fr_FR&amp;trackNums={NumeroColis}" />
-				  
+				visual-refid="ups_visual"
+				description="Livraison UPS"
+				code="UPS" codeReference="UPS"
+				trackingUrl="http://wwwapps.ups.com/WebTracking/track?loc=fr_FR&amp;loc=fr_FR&amp;trackNums={NumeroColis}" />
+			
 			<virtualmode byLabel="Download" label="Download"
-				  visual-refid="download_visual"
-				  description="Telechargement"
-				  code="DWL" codeReference="DWL" />
+				visual-refid="download_visual"
+				description="Telechargement"
+				code="DWL" codeReference="DWL" />
 		</folder>
 	</rootfolder>
 </script>

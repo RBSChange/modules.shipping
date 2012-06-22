@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.shipping.bo.general" lcid="en_GB">
-  <key id="module-name">shipping methods</key>
-  <key id="tree-root-name">shipping methods</key>
-  <key id="system-folder-name">shipping methods</key>
+	<key id="module-name">shipping methods</key>
+	<key id="tree-root-name">shipping methods</key>
+	<key id="system-folder-name">shipping methods</key>
 </i18n>

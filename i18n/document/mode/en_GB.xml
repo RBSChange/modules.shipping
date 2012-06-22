@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <i18n baseKey="m.shipping.document.mode" lcid="en_GB">
-  <key id="document-name">shipping method</key>
-  <key id="label">label</key>
-  <key id="visual">visual element</key>
-  <key id="description">description</key>
-  <key id="description-help">the description of the method is shown during the selection of the shipping method in the ordering process.</key>
-  <key id="codereference">reference code</key>
-  <key id="code">code</key>
-  <key id="code-help">Code identifying the shipping method, which can be used to identify the method in order exports.</key>
-  <key id="trackingurl">URL for package tracking</key>
-  <key id="trackingurl-help">This URL address allows your customers to track their package in real time on the Internet. Use the {NumeroColis} tag to specify where to place the tracking number in this address: it will be replaced by the tracking number set in the order.</key>
-  <key id="deliveryzone">Shipping areas</key>
-  <key id="deliveryzone-help">Allowed shipping areas</key>
-  <key id="label-help">label of the shipping method, used in the backoffice and on the websites to identify the method.</key>
-  <key id="addressRequired"/>
-  <key id="addressRequired-help"/>
+	<key id="document-name">shipping method</key>
+	<key id="label">label</key>
+	<key id="visual">visual element</key>
+	<key id="description">description</key>
+	<key id="description-help">the description of the method is shown during the selection of the shipping method in the ordering process.</key>
+	<key id="codereference">reference code</key>
+	<key id="code">code</key>
+	<key id="code-help">Code identifying the shipping method, which can be used to identify the method in order exports.</key>
+	<key id="trackingurl">URL for package tracking</key>
+	<key id="trackingurl-help">This URL address allows your customers to track their package in real time on the Internet. Use the {NumeroColis} tag to specify where to place the tracking number in this address: it will be replaced by the tracking number set in the order.</key>
+	<key id="addressrequired">Shipping Address</key>
+	<key id="addressrequired-help">The shipping address is mandatory</key>
+	<key id="deliveryzone">Shipping areas</key>
+	<key id="deliveryzone-help">Allowed shipping areas</key>
+	<key id="label-help">label of the shipping method, used in the backoffice and on the websites to identify the method.</key>
 </i18n>

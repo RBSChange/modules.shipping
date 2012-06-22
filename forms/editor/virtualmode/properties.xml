@@ -5,6 +5,6 @@
 		<field name="code" />
 		<field name="trackingUrl" />
 		<field name="description" />
-		<field name="visual" />
+		<field name="visual" hidehelp="true" />
 	</section>
 </panel>

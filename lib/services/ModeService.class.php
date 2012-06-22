@@ -1,27 +1,10 @@
 <?php
 /**
- * shipping_ModeService
- * @package shipping
+ * @package modules.shipping
+ * @method shipping_ModeService getInstance()
  */
 class shipping_ModeService extends f_persistentdocument_DocumentService
 {
-	/**
-	 * @var shipping_ModeService
-	 */
-	private static $instance;
-
-	/**
-	 * @return shipping_ModeService
-	 */
-	public static function getInstance()
-	{
-		if (self::$instance === null)
-		{
-			self::$instance = new self();
-		}
-		return self::$instance;
-	}
-
 	/**
 	 * @return shipping_persistentdocument_mode
 	 */
@@ -38,7 +21,7 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */
 	public function createQuery()
 	{
-		return $this->pp->createQuery('modules_shipping/mode');
+		return $this->getPersistentProvider()->createQuery('modules_shipping/mode');
 	}
 	
 	/**
@@ -49,7 +32,7 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */
 	public function createStrictQuery()
 	{
-		return $this->pp->createQuery('modules_shipping/mode', false);
+		return $this->getPersistentProvider()->createQuery('modules_shipping/mode', false);
 	}
 	
 	/**
@@ -154,7 +137,6 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */
 	public function completeExpedtionForMode($expedition, $mode)
 	{
-
 		$expedition->setShippingModeId($mode->getId());
 		$expedition->setTransporteur($mode->getCodeReference());
 		$expedition->setTrackingURL($mode->getTrackingUrl());
@@ -167,12 +149,15 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	 */	
 	public function completeExpeditionLineForDisplay($expeditionLine, $shippmentMode, $expedition)
 	{
-		
+		if ($expeditionLine->getTrackingURL() === null)
+		{
+			$expeditionLine->setTrackingURL($expedition->getOriginalTrackingURL());
+		}
 	}
 	
 	/**
 	 * @param shipping_persistentdocument_mode $document
-	 * @param Integer $parentNodeId Parent node ID where to save the document (optionnal).
+	 * @param integer $parentNodeId Parent node ID where to save the document (optionnal).
 	 * @return void
 	 */
 	protected function preSave($document, $parentNodeId)
@@ -188,5 +173,95 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	public function getNotificationParameters($mode, $expedition)
 	{
 		return array();
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_order $order
+	 * @param order_CartInfo $cartInfo
+	 * @param boolean $setDefault
+	 * @return boolean true if shippingAddress property was set on order.
+	 */
+	public function setShippingAddress($mode, $order, $cartInfo, $setDefault = true)
+	{
+		if (!$setDefault)
+		{
+			return false;
+		}
+		
+		$shippingAddress = $order->getShippingAddress();
+		if ($cartInfo->getAddressInfo()->useSameAddressForBilling)
+		{
+			if ($shippingAddress !== $order->getBillingAddress())
+			{
+				$order->setShippingAddress(null);
+			}
+			return true;
+		}
+
+		if ($shippingAddress === null || $shippingAddress === $order->getBillingAddress())		
+		{
+			$shippingAddress = customer_AddressService::getNewDocumentInstance();
+			$order->setShippingAddress($shippingAddress);
+		}		
+		$cartInfo->getAddressInfo()->exportShippingAddress($shippingAddress);
+		$shippingAddress->setPublicationstatus('FILED');
+		$shippingAddress->save();	
+		$cartInfo->setShippingAddressId($shippingAddress->getId());
+		return true;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @see order_ExpeditionService::shipExpedition
+	 */
+	public function completeExpeditionForShipping($mode, $expedition)
+	{
+		// Nothing to do by default.
+		// Ici mettre à jour les propriétés de l'expédition. L'expédition sera sauvegardée juste après.
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @return website_persistentdocument_page
+	 */
+	public function getDisplayPageForExpedition($mode, $expedition)
+	{
+		return null;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $document
+	 * @param string $errorMessage
+	 */
+	public function canBeFiled($document, &$errorMessage)
+	{
+		$ms = ModuleService::getInstance();
+		if ($ms->moduleExists('catalog'))
+		{
+			$sfs = catalog_ShippingfilterService::getInstance();
+			$query = $sfs->createQuery()->add(Restrictions::eq('mode', $document))->setProjection(Projections::rowCount('count'));
+			if (f_util_ArrayUtils::firstElement($query->findColumn('count')) > 0)
+			{
+				$errorMessage = LocaleService::getInstance()->trans('m.shipping.bo.general.used-in-filters');
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_persistentdocument_expedition $expedition
+	 * @param boolean $completlyShipped
+	 * @return string
+	 */
+	public function sendShippedNotification($mode, $expedition, $completlyShipped = false)
+	{
+		$codeName = 'modules_order/expedition_shipped';
+		$suffix = $expedition->getTransporteur();
+		order_ModuleService::getInstance()->sendCustomerSuffixedNotification($codeName, $suffix, $expedition->getOrder(), $expedition->getBill(), $expedition);
 	}
 }

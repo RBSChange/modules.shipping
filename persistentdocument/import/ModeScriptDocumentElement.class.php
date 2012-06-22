@@ -5,15 +5,15 @@
  */
 class shipping_ModeScriptDocumentElement extends import_ScriptDocumentElement
 {
-    /**
-     * @return shipping_persistentdocument_mode
-     */
-    protected function initPersistentDocument()
-    {
-    	return shipping_ModeService::getInstance()->getNewDocumentInstance();
-    }
-    
-    /**
+	/**
+	 * @return shipping_persistentdocument_mode
+	 */
+	protected function initPersistentDocument()
+	{
+		return shipping_ModeService::getInstance()->getNewDocumentInstance();
+	}
+	
+	/**
 	 * @return f_persistentdocument_PersistentDocumentModel
 	 */
 	protected function getDocumentModel()
