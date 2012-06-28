@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/static/schema/change-document/4.0.xsd" model-version="1.0" icon="shipping" has-url="false" use-publication-dates="false" indexable="false" backoffice-indexable="false">
+<document xmlns="http://www.rbs.fr/schema/change-document/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.rbs.fr/schema/change-document/1.0 http://www.rbschange.fr/schema/persistentdocument-4.0.xsd" model-version="1.0" icon="shipping" has-url="false" use-publication-dates="false" indexable="false" backoffice-indexable="false">
 	<properties>
-		<property name="visual" type="modules_media/media" />
+		<property name="visual" type="Document" document-type="modules_media/media" />
 		<property name="description" type="LongString" localized="true" />
 		<property name="code" type="String" db-size="20" min-occurs="1" />
 		<property name="codeReference" type="String" db-size="50" default-value="Shipping mode" />
 		<property name="trackingUrl" type="String" />
 		<property name="addressRequired" type="Boolean" default-value="true" />
-		<property name="deliveryZone" type="modules_zone/zone" max-occurs="-1" />
+		<property name="deliveryZone" type="DocumentArray" document-type="modules_zone/zone" />
 	</properties>
 	<statuses default="ACTIVE" />
 </document>
