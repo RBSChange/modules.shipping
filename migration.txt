@@ -1,0 +1,7 @@
+Last merge with 3.6 : https://github.com/RBSChange/modules.shipping/commit/2398873a57bdc642a08ec71a8b3c2f8a62716de6
+
+removed function :
+
+removed class :
+
+removed interface :

@@ -177,6 +177,25 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 	
 	/**
 	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_CartInfo $cart
+	 * @return string[]|false
+	 */
+	public function getConfigurationBlockForCart($mode, $cart)
+	{
+		return false;
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
+	 * @param order_CartInfo $cart
+	 */
+	public function completeCart($mode, $cart)
+	{
+	
+	}
+	
+	/**
+	 * @param shipping_persistentdocument_mode $mode
 	 * @param order_persistentdocument_order $order
 	 * @param order_CartInfo $cartInfo
 	 * @param boolean $setDefault
