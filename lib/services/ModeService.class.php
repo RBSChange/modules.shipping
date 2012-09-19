@@ -221,11 +221,11 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 		if ($shippingAddress === null || $shippingAddress === $order->getBillingAddress())		
 		{
 			$shippingAddress = customer_AddressService::getNewDocumentInstance();
-			$order->setShippingAddress($shippingAddress);
 		}		
 		$cartInfo->getAddressInfo()->exportShippingAddress($shippingAddress);
 		$shippingAddress->setPublicationstatus('FILED');
 		$shippingAddress->save();	
+		$order->setShippingAddress($shippingAddress);
 		$cartInfo->setShippingAddressId($shippingAddress->getId());
 		return true;
 	}
