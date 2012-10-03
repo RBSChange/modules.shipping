@@ -7,6 +7,6 @@
 		<field name="description" />
 		<field name="visual" hidehelp="true" />
 		<field name="addressRequired" />
-		<field name="deliveryZone" moduleselector="zone" allow="[modules_zone/zone]" />
+		<field name="deliveryZone" moduleselector="zone" allow="[modules_zone_zone]" />
 	</section>
 </panel>
