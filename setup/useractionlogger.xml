@@ -21,4 +21,9 @@
   <actiondef modulename="shipping" actionname="update.kialamode" label="m.shipping.bo.useractionlogger.update-kialamode"/>
   <actiondef modulename="shipping" actionname="move.virtualmode" label="m.shipping.bo.useractionlogger.move-virtualmode"/>
   <actiondef modulename="shipping" actionname="move.mode" label="m.shipping.bo.useractionlogger.move-mode"/>
+  <actiondef modulename="shipping" actionname="insert.mondialrelaymode" label="m.shipping.bo.useractionlogger.insert-mondialrelaymode"/>
+  <actiondef modulename="shipping" actionname="update.mondialrelaymode" label="m.shipping.bo.useractionlogger.update-mondialrelaymode"/>
+  <actiondef modulename="shipping" actionname="insert.kialamode" label="m.shipping.bo.useractionlogger.insert-kialamode"/>
+  <actiondef modulename="shipping" actionname="insert.icirelaismode" label="m.shipping.bo.useractionlogger.insert-icirelaismode"/>
+  <actiondef modulename="shipping" actionname="update.icirelaismode" label="m.shipping.bo.useractionlogger.update-icirelaismode"/>
 </script>

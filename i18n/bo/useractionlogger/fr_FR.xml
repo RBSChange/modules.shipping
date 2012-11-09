@@ -40,4 +40,14 @@
   <key id="log-move-virtualmode">log move virtualmode</key>
   <key id="move-mode">move.mode {destinationlabel} {lang} {documentlabel}</key>
   <key id="log-move-mode">log move mode</key>
+  <key id="insert-mondialrelaymode">insert.mondialrelaymode {lang} {documentlabel}</key>
+  <key id="log-insert-mondialrelaymode">log insert mondialrelaymode</key>
+  <key id="update-mondialrelaymode">update.mondialrelaymode {lang} {documentlabel}</key>
+  <key id="log-update-mondialrelaymode">log update mondialrelaymode</key>
+  <key id="insert-kialamode">insert.kialamode {lang} {documentlabel}</key>
+  <key id="log-insert-kialamode">log insert kialamode</key>
+  <key id="insert-icirelaismode">insert.icirelaismode {lang} {documentlabel}</key>
+  <key id="log-insert-icirelaismode">log insert icirelaismode</key>
+  <key id="update-icirelaismode">update.icirelaismode {lang} {documentlabel}</key>
+  <key id="log-update-icirelaismode">log update icirelaismode</key>
 </i18n>

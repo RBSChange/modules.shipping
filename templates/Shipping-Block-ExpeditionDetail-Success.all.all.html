@@ -1,0 +1,182 @@
+<ul class="mini-navigation">
+	<li><a change:link="document order">${trans:m.customer.frontoffice.back-to-order,ucf}</a>
+	</li>
+</ul>
+
+<h1 change:h="">
+	<span>${trans:m.order.frontoffice.shipping-number,ucf}</span>
+	${expedition/getLabelAsHtml}
+</h1>
+<div class="columns">
+	<div class="column-50">
+		<h2 change:h="">${trans:m.order.frontoffice.general-informations,ucf}</h2>
+		<dl tal:define="shippingMode expedition/getShippingMode"
+			class="inline-items normal-margin">
+			<dt>${trans:m.order.frontoffice.related-order,ucf}</dt>
+			<dd>
+				<a change:link="document order">${order/getOrderNumber}</a>
+				(${datetime:order/getUICreationdate}) (<a class="link popup"
+					target="_blank"
+					href="${actionurl:'order', 'PrintExpedition', cmpref=expedition/getId, attr}">${trans:m.order.frontoffice.delivery,ucf}</a>)
+			</dd>
+			<dt>${trans:m.order.frontoffice.expedition-status,ucf}</dt>
+			<dd>${expedition/getStatusLabel}</dd>
+			<dt>${trans:m.order.frontoffice.transport-name,ucf}</dt>
+			<dd>${shippingMode/getLabelAsHtml}</dd>
+			<tal:block tal:condition="expedition/getShippingDate">
+				<dt>${trans:m.order.document.expedition.shippingdate,ucf}</dt>
+				<dd>${datetime:expedition/getUIShippingDate}</dd>
+			</tal:block>
+			<tal:block tal:condition="expedition/getTrackingNumber">
+				<dt>${trans:m.order.frontoffice.tracking-number,ucf}</dt>
+				<dd>
+					<a class="link" href="${expedition/getTrackingURL}">${expedition/getTrackingNumber}</a>
+				</dd>
+			</tal:block>
+			<tal:block tal:condition="expedition/getTrackingText">
+				<dt>${trans:m.order.frontoffice.tracking-text,ucf}</dt>
+				<dd>${expedition/getTrackingTextAsHtml}</dd>
+			</tal:block>
+		</dl>
+	</div>
+	<div class="column-50">
+		<h2 change:h="">${trans:m.order.frontoffice.shippingaddress,ucf}</h2>
+		<ul tal:define="address expedition/getAddress"
+			class="address normal-margin">
+			<li>${address/getCompanyAsHtml}</li>
+			<li>${address/getAddressLine1}</li>
+			<li tal:condition="address/getAddressLine2">${address/getAddressLine2}</li>
+			<li tal:condition="address/getAddressLine3">${address/getAddressLine3}</li>
+			<li>${address/getZipcode} ${address/getCity}</li>
+			<li tal:condition="address/getProvince">${address/getProvince}</li>
+			<li>${address/getCountry/getLabel}</li>
+			<li tal:condition="address/getPhone">${address/getPhone}</li>
+			<li tal:condition="address/getFax">${address/getFax}</li>
+		</ul>
+	</div>
+</div>
+
+<h2 change:h="">${trans:m.shipping.general.informations-relay,ucf}</h2>
+
+<tal:block tal:condition="not: relayDetailError">
+	<div class="columns">
+		<div class="column-50">
+			<tal:block tal:condition="coordinate">
+				<div id="relay-map"	class="normal" style="width:400px ; height: 300px"></div>
+				<script change:javascript="head 'modules.gmaps.lib.js.base'"></script>
+				<script type="text/javascript">
+					/* <![CDATA[ */
+					var map = gmaps_initializeMap(document.getElementById('relay-map'), ${coordinate/latitude}, ${coordinate/longitude}, 15);
+					gmaps_addMarkerToMap(map, ${coordinate/latitude}, ${coordinate/longitude}, "${expedition/getAddress/getCompanyAsHtml}");
+					gmaps_locateMeInMap(map);
+					/* ]]> */
+				</script>
+			</tal:block>
+			<tal:block tal:condition="not: coordinate">
+				<iframe tal:condition="planUrl" src="${planUrl}" allowtransparency="true" framespacing="0"
+					frameborder="no" scrolling="no" width="400" height="250"></iframe>
+			</tal:block>
+		</div>
+		<div class="column-50">
+			<p>${trans:m.shipping.general.opening-hours-title,ucf}</p>
+			<dl class="inline-items">
+				<dt>${trans:f.date.date.monday,ucf}</dt>
+				<dd>${openingHours/0}</dd>
+				<dt>${trans:f.date.date.tuesday,ucf}</dt>
+				<dd>${openingHours/1}</dd>
+				<dt>${trans:f.date.date.wednesday,ucf}</dt>
+				<dd>${openingHours/2}</dd>
+				<dt>${trans:f.date.date.thursday,ucf}</dt>
+				<dd>${openingHours/3}</dd>
+				<dt>${trans:f.date.date.friday,ucf}</dt>
+				<dd>${openingHours/4}</dd>
+				<dt>${trans:f.date.date.saturday,ucf}</dt>
+				<dd>${openingHours/5}</dd>
+				<dt>${trans:f.date.date.sunday,ucf}</dt>
+				<dd>${openingHours/6}</dd>
+			</dl>
+			<tal:block tal:condition="locationHint">
+				<p>${trans:m.shipping.general.location-hint-title,ucf}</p>
+				<p>${locationHint}</p>
+			</tal:block>
+			<tal:block tal:condition="pictureUrl">
+				<div class="normal"><img src="${pictureUrl}"/></div>
+			</tal:block>
+		</div>
+	</div>
+</tal:block>
+<tal:block tal:condition="relayDetailError">
+	<p>${trans:m.shipping.general.informations-relay-error,ucf,error=relayDetailError}</p>
+</tal:block>
+
+<h2 change:h="">${trans:m.order.frontoffice.expedition-lines,ucf}</h2>
+<tal:block tal:repeat="packetLines packetByExpedition">
+	<dl tal:define="packet packetLines/0" class="inline-items">
+		<tal:block tal:condition="packet/getPacketNumber">
+			<dt>${trans:m.order.frontoffice.packet,ucf}</dt>
+			<dd>${packet/getPacketNumberAsHtml}</dd>
+		</tal:block>
+		<tal:block  tal:condition="packet/getTrackingNumber">
+			<dt>${trans:m.order.frontoffice.track,ucf}</dt>
+			<dd>
+				<a tal:omit-tag="not: packet/getTrackingURL" class="link"
+					target="_blank" href="${packet/getEvaluatedTrackingURL}">${packet/getTrackingNumberAsHtml}</a>
+				<p tal:condition="packet/getTrackingText">${packet/getTrackingTextAsHtml}</p>
+			</dd>
+		</tal:block>
+	</dl>
+	<table class="normal">
+		<thead>
+			<tr>
+				<th>${trans:m.order.frontoffice.designation,ucf}</th>
+				<th>${trans:m.order.frontoffice.codereference,ucf}</th>
+				<th>${trans:m.order.frontoffice.quantity,ucf}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="line packetLines" class="${alternateclass: expIndex}">
+				<tal:block tal:define="product line/getProduct">
+					<td>${product/getLabelAsHtml}</td>
+					<td>${product/getCodeReferenceAsHtml}</td>
+					<td>${line/getQuantity} / ${line/getOrderProductQuantity}</td>
+				</tal:block>
+			</tr>
+		</tbody>
+	</table>
+	<h3 change:h="">${trans:m.shipping.general.tracking-title,ucf}</h3>
+	<tal:block tal:define="packet packetLines/0; trackingNumber packet/getTrackingNumber; tracking trackingByPacket/${trackingNumber}">
+		<tal:block tal:condition="not: tracking/error">
+		
+			<table tal:condition="tracking/steps" class="normal">
+				<thead>
+					<tr>
+						<th>${trans:m.shipping.general.tracking-label,ucf}</th>
+						<th>${trans:m.shipping.general.tracking-date,ucf}</th>
+						<th>${trans:m.shipping.general.tracking-hour,ucf}</th>
+						<th>${trans:m.shipping.general.tracking-place,ucf}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr tal:repeat="step tracking/steps"
+						class="${alternateclass: expIndex}">
+						<td>${step/label}</td>
+						<td>${step/date}</td>
+						<td>${step/hour}</td>
+						<td>${step/place}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<tal:block tal:condition="not: tracking/steps">
+				<iframe tal:condition="tracking/trackingUrl" src="${tracking/trackingUrl}" allowtransparency="true" framespacing="0"
+					frameborder="no" scrolling="no" width="400" height="250"></iframe>
+				<p tal:condition="not: tracking/trackingUrl">${trans:m.shipping.general.no-tracking,ucf}</p>
+			</tal:block>
+			
+		</tal:block>
+		<tal:block tal:condition="tracking/error">
+			<p>${trans:m.shipping.general.tracking-error,ucf,error=tracking/error}</p>
+		</tal:block>
+	</tal:block>
+	<hr tal:condition="not: repeat/packetLines/end" />
+</tal:block>

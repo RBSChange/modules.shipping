@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.shipping.general" lcid="fr_FR">
+	<key id="relay-label">relais ({codeReference})</key>
+	<key id="closed">fermé</key>
+	<key id="opening-hours">{hour1} à {hour2}</key>
+	<key id="and">-</key>
+	<key id="informations-relay">informations sur le relais</key>
+	<key id="opening-hours-title">heures d'ouvertures</key>
+	<key id="location-hint-title">informations de localisation complémentaires</key>
+	<key id="tracking-title">suivi d'expédition</key>
+	<key id="informations-relay-error">l'erreur suivante s'est produite : {error}. Merci de réessayer ultérieurement ou de contacter notre service client.</key>
+	<key id="tracking-error">l'erreur suivante s'est produite : {error}. Merci de réessayer ultérieurement ou de contacter notre service client.</key>
+	<key id="tracking-label">étape</key>
+	<key id="tracking-date">date</key>
+	<key id="tracking-hour">heure</key>
+	<key id="tracking-place">emplacement</key>
+	<key id="no-tracking">suivi de colis indisponible</key>
+	<key id="select-relay-header-title">sélectionner votre relais</key>
+</i18n>

@@ -1,0 +1,14 @@
+<tal:block change:include="module 'order'; template 'Order-Inc-StdProcess-NavigationTop'; type 'html';cart cart" />
+
+<tal:block change:include="" transmitAll="true" module="order" template="Order-Inc-ShippingModeConfiguration-Header" />
+
+<h2 change:h="">${trans: m.shipping.general.select-relay-header-title, ucf}</h2>
+<tal:block change:block="" module="website" name="messages" container="" />
+
+<div class="text-align-center">
+	<iframe src="${frameUrl}" allowtransparency="true" framespacing="0" frameborder="no" scrolling="no" width="850" height="500"></iframe>
+</div>
+
+<p class="buttons">
+	<a change:actionlink="" href="${cart/getOrderProcess/getShippingStepUrl}">${trans:m.order.frontoffice.back-to-previous-step,ucf}</a>
+</p>
