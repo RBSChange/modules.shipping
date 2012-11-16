@@ -3,19 +3,58 @@
  * shipping_SelectRelayAction
  * @package modules.shipping.actions
  */
-abstract class shipping_SelectRelayAction extends f_action_BaseAction
+class shipping_SelectRelayAction extends f_action_BaseAction
 {
 	
-	abstract protected function getMode($modeId);
+	protected function getMode($modeId)
+	{
+		$mode = DocumentHelper::getDocumentInstanceIfExists($modeId);
+		if ($mode != null && $mode instanceof shipping_persistentdocument_mode)
+		{
+			return $mode;
+		}
+		return null;
+	}
 	
-	abstract protected function getRelayCodeParamName();
-	abstract protected function getRelayCountryCodeParamName();
-	abstract protected function getRelayNameParamName();
-	abstract protected function getRelayAddress1ParamName();
-	abstract protected function getRelayAddress2ParamName();
-	abstract protected function getRelayAddress3ParamName();
-	abstract protected function getRelayZipCodeParamName();
-	abstract protected function getRelayCityParamName();
+	protected function getRelayCodeParamName()
+	{
+		return 'relayRef';
+	}
+	
+	protected function getRelayCountryCodeParamName()
+	{
+		return 'relayCountryCode';
+	}
+	
+	protected function getRelayNameParamName()
+	{
+		return 'relayName';
+	}
+	
+	protected function getRelayAddress1ParamName()
+	{
+		return 'relayAddressLine1';
+	}
+	
+	protected function getRelayAddress2ParamName()
+	{
+		return 'relayAddressLine2';
+	}
+	
+	protected function getRelayAddress3ParamName()
+	{
+		return 'relayAddressLine3';
+	}
+	
+	protected function getRelayZipCodeParamName()
+	{
+		return 'relayZipCode';
+	}
+	
+	protected function getRelayCityParamName()
+	{
+		return 'relayCity';
+	}
 	
 	/**
 	 * @param Context $context

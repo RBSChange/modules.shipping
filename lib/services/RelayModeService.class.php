@@ -8,8 +8,6 @@ abstract class shipping_RelayModeService extends shipping_ModeService
 	
 	abstract protected function getDetailExpeditionPageTagName();
 	
-	abstract public function getFrameUrl($mode, $shippingAddress, $extraUrlParams = array());
-	
 	/**
 	 * @param shipping_persistentdocument_mode $mode
 	 * @param order_persistentdocument_expedition $expedition

@@ -58,28 +58,28 @@
 
 <h2 change:h="">${trans:m.shipping.general.informations-relay,ucf}</h2>
 
-<tal:block tal:condition="not: relayDetailError">
+<tal:block tal:condition="relay">
 	<div class="columns">
 		<div class="column-50">
-			<tal:block tal:condition="coordinate">
+			<tal:block tal:condition="relay/hasCoordinate">
 				<div id="relay-map"	class="normal" style="width:400px ; height: 300px"></div>
 				<script change:javascript="head 'modules.gmaps.lib.js.base'"></script>
 				<script type="text/javascript">
 					/* <![CDATA[ */
-					var map = gmaps_initializeMap(document.getElementById('relay-map'), ${coordinate/latitude}, ${coordinate/longitude}, 15);
-					gmaps_addMarkerToMap(map, ${coordinate/latitude}, ${coordinate/longitude}, "${expedition/getAddress/getCompanyAsHtml}");
+					var map = gmaps_initializeMap(document.getElementById('relay-map'), ${relay/getLatitude}, ${relay/getLongitude}, 15);
+					gmaps_addMarkerToMap(map, ${relay/getLatitude}, ${relay/getLongitude}, "${expedition/getAddress/getCompanyAsHtml}");
 					gmaps_locateMeInMap(map);
 					/* ]]> */
 				</script>
 			</tal:block>
-			<tal:block tal:condition="not: coordinate">
-				<iframe tal:condition="planUrl" src="${planUrl}" allowtransparency="true" framespacing="0"
+			<tal:block tal:condition="not:relay/hasCoordinate">
+				<iframe tal:condition="relay/getMapUrl" src="${relay/getMapUrl}" allowtransparency="true" framespacing="0"
 					frameborder="no" scrolling="no" width="400" height="250"></iframe>
 			</tal:block>
 		</div>
 		<div class="column-50">
 			<p>${trans:m.shipping.general.opening-hours-title,ucf}</p>
-			<dl class="inline-items">
+			<dl class="inline-items" tal:define="openingHours relay/getOpeningHours">
 				<dt>${trans:f.date.date.monday,ucf}</dt>
 				<dd>${openingHours/0}</dd>
 				<dt>${trans:f.date.date.tuesday,ucf}</dt>
@@ -95,18 +95,15 @@
 				<dt>${trans:f.date.date.sunday,ucf}</dt>
 				<dd>${openingHours/6}</dd>
 			</dl>
-			<tal:block tal:condition="locationHint">
+			<tal:block tal:condition="relay/getLocationHint">
 				<p>${trans:m.shipping.general.location-hint-title,ucf}</p>
-				<p>${locationHint}</p>
+				<p>${relay/getLocationHint}</p>
 			</tal:block>
-			<tal:block tal:condition="pictureUrl">
-				<div class="normal"><img src="${pictureUrl}"/></div>
+			<tal:block tal:condition="relay/getPictureUrl">
+				<div class="normal"><img src="${relay/getPictureUrl}"/></div>
 			</tal:block>
 		</div>
 	</div>
-</tal:block>
-<tal:block tal:condition="relayDetailError">
-	<p>${trans:m.shipping.general.informations-relay-error,ucf,error=relayDetailError}</p>
 </tal:block>
 
 <h2 change:h="">${trans:m.order.frontoffice.expedition-lines,ucf}</h2>
@@ -115,14 +112,6 @@
 		<tal:block tal:condition="packet/getPacketNumber">
 			<dt>${trans:m.order.frontoffice.packet,ucf}</dt>
 			<dd>${packet/getPacketNumberAsHtml}</dd>
-		</tal:block>
-		<tal:block  tal:condition="packet/getTrackingNumber">
-			<dt>${trans:m.order.frontoffice.track,ucf}</dt>
-			<dd>
-				<a tal:omit-tag="not: packet/getTrackingURL" class="link"
-					target="_blank" href="${packet/getEvaluatedTrackingURL}">${packet/getTrackingNumberAsHtml}</a>
-				<p tal:condition="packet/getTrackingText">${packet/getTrackingTextAsHtml}</p>
-			</dd>
 		</tal:block>
 	</dl>
 	<table class="normal">
@@ -145,8 +134,16 @@
 	</table>
 	<h3 change:h="">${trans:m.shipping.general.tracking-title,ucf}</h3>
 	<tal:block tal:define="packet packetLines/0; trackingNumber packet/getTrackingNumber; tracking trackingByPacket/${trackingNumber}">
-		<tal:block tal:condition="not: tracking/error">
 		
+		<tal:block tal:condition="trackingNumber">
+			<p>${trans:m.order.frontoffice.track,ucf,lab}
+				<a tal:omit-tag="not:packet/getTrackingURL" class="link" target="_blank" href="${packet/getEvaluatedTrackingURL}">${packet/getTrackingNumberAsHtml}</a>
+				<p tal:condition="packet/getTrackingText">${packet/getTrackingTextAsHtml}</p>
+			</p>
+		</tal:block>
+		
+		<tal:block tal:condition="not:tracking/error">
+
 			<table tal:condition="tracking/steps" class="normal">
 				<thead>
 					<tr>
@@ -166,17 +163,23 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			<tal:block tal:condition="not: tracking/steps">
-				<iframe tal:condition="tracking/trackingUrl" src="${tracking/trackingUrl}" allowtransparency="true" framespacing="0"
-					frameborder="no" scrolling="no" width="400" height="250"></iframe>
-				<p tal:condition="not: tracking/trackingUrl">${trans:m.shipping.general.no-tracking,ucf}</p>
+
+			<tal:block tal:condition="not:tracking/steps">
+				<iframe tal:condition="tracking/trackingUrl" src="${tracking/trackingUrl}" allowtransparency="true"
+					framespacing="0" frameborder="no" scrolling="no" width="400"
+					height="250"></iframe>
+				<tal:block tal:condition="not:tracking/trackingUrl">
+					
+					<p tal:condition="not:trackingNumber">${trans:m.shipping.general.no-tracking,ucf}</p>
+					
+				</tal:block>
 			</tal:block>
-			
+
 		</tal:block>
 		<tal:block tal:condition="tracking/error">
 			<p>${trans:m.shipping.general.tracking-error,ucf,error=tracking/error}</p>
 		</tal:block>
+
 	</tal:block>
-	<hr tal:condition="not: repeat/packetLines/end" />
+		<hr tal:condition="not: repeat/packetLines/end" />
 </tal:block>

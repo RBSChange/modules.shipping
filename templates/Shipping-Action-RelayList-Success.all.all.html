@@ -1,0 +1,46 @@
+<ul tal:condition="relays" class="document-list">
+	<li tal:repeat="relay relays" class="${alternateclass:relayCount}">
+		<div id="${relay/getRef}">
+			<h2 change:h="">
+				<a change:link="document relay">${relay/getName}</a>
+			</h2>
+
+			<img tal:condition="relay/getPictureUrl" src="${relay/getPictureUrl}" />
+
+			<div class="normal address" tal:condition="relay/getAddress">
+				${relay/getAddressAsHtml}
+				<tal:block tal:condition="relay/getDistance">
+					${trans:m.shipping.general.distance,ucf, distance=relay/getDistance}
+				</tal:block>
+				<tal:block tal:condition="relay/getLocationHint">
+					<p>${trans:m.shipping.general.location-hint-title,ucf}</p>
+					<p>${relay/getLocationHint}</p>
+				</tal:block>
+			</div>
+
+			<p>${trans:m.shipping.general.opening-hours-title,ucf}</p>
+			<dl class="inline-items"
+				tal:define="openingHours relay/getOpeningHours">
+				<dt>${trans:f.date.date.monday,ucf}</dt>
+				<dd>${openingHours/0}</dd>
+				<dt>${trans:f.date.date.tuesday,ucf}</dt>
+				<dd>${openingHours/1}</dd>
+				<dt>${trans:f.date.date.wednesday,ucf}</dt>
+				<dd>${openingHours/2}</dd>
+				<dt>${trans:f.date.date.thursday,ucf}</dt>
+				<dd>${openingHours/3}</dd>
+				<dt>${trans:f.date.date.friday,ucf}</dt>
+				<dd>${openingHours/4}</dd>
+				<dt>${trans:f.date.date.saturday,ucf}</dt>
+				<dd>${openingHours/5}</dd>
+				<dt>${trans:f.date.date.sunday,ucf}</dt>
+				<dd>${openingHours/6}</dd>
+			</dl>
+
+			<button class="button"
+				onclick="relay_SelectRelayByRef(${relay/getRef}, ${relay/getCountryCode}, ${relay/getName}, ${relay/getAddressLine1}, ${relay/getAddressLine2}, ${relay/getAddressLine3}, ${relay/getZipCode}, ${relay/getCity})">${trans:m.shipping.general.choose-this-relay,ucf}</button>
+		</div>
+		<div class="cleaner"></div>
+	</li>
+</ul>
+<p tal:condition="not:relays">${trans:m.shipping.general.no-relay-to-display,ucf}</p>

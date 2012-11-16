@@ -26,4 +26,5 @@
   <actiondef modulename="shipping" actionname="insert.kialamode" label="m.shipping.bo.useractionlogger.insert-kialamode"/>
   <actiondef modulename="shipping" actionname="insert.icirelaismode" label="m.shipping.bo.useractionlogger.insert-icirelaismode"/>
   <actiondef modulename="shipping" actionname="update.icirelaismode" label="m.shipping.bo.useractionlogger.update-icirelaismode"/>
+  <actiondef modulename="shipping" actionname="insert.relaiscolismode" label="m.shipping.bo.useractionlogger.insert-relaiscolismode"/>
 </script>

@@ -50,20 +50,8 @@ abstract class shipping_BlockExpeditionDetailAction extends website_BlockAction
 		
 		$this->init();
 		
-		$relayDetails = $this->getRelayDetail();
-		
-		if ($relayDetails['error'] != null)
-		{
-			$request->setAttribute('relayDetailError', $relayDetails['error']);
-		}
-		else
-		{
-			$request->setAttribute('openingHours', $relayDetails['openingHours']);
-			$request->setAttribute('planUrl', $relayDetails['planUrl']);
-			$request->setAttribute('pictureUrl', $relayDetails['pictureUrl']);
-			$request->setAttribute('locationHint', $relayDetails['locationHint']);
-			$request->setAttribute('coordinate', $relayDetails['coordinate']);
-		}
+		$relay = $this->getRelayDetail();
+		$request->setAttribute('relay', $relay);
 		
 		$request->setAttribute('expedition', $expedition);
 		$expeditionlines = $expedition->getDocumentService()->getLinesForDisplay($expedition);

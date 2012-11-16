@@ -16,4 +16,16 @@
 	<key id="tracking-place">emplacement</key>
 	<key id="no-tracking">suivi de colis indisponible</key>
 	<key id="select-relay-header-title">sélectionner votre relais</key>
+	<key id="no-relay-to-display">aucun relais à afficher</key>
+	<key id="choose-this-relay">choisir ce point relais</key>
+	<key id="distance">distance : ~{distance}m</key>
+	<key id="center-on-me">centrer sur l'adresse choisie</key>
+	<key id="filter">filtrer</key>
+	<key id="geolocate-me">localisez moi</key>
+	<key id="location">localisation</key>
+	<key id="filter-by-distance">filtrer par localisation</key>
+	<key id="address">adresse</key>
+	<key id="zipcode">code postal</key>
+	<key id="city">ville</key>
+	<key id="country">pays</key>
 </i18n>

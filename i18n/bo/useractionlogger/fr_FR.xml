@@ -50,4 +50,6 @@
   <key id="log-insert-icirelaismode">log insert icirelaismode</key>
   <key id="update-icirelaismode">update.icirelaismode {lang} {documentlabel}</key>
   <key id="log-update-icirelaismode">log update icirelaismode</key>
+  <key id="insert-relaiscolismode">insert.relaiscolismode {lang} {documentlabel}</key>
+  <key id="log-insert-relaiscolismode">log insert relaiscolismode</key>
 </i18n>
