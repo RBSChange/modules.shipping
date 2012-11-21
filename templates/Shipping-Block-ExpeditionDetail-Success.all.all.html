@@ -56,9 +56,8 @@
 	</div>
 </div>
 
-<h2 change:h="">${trans:m.shipping.general.informations-relay,ucf}</h2>
-
 <tal:block tal:condition="relay">
+	<h2 change:h="">${trans:m.shipping.general.informations-relay,ucf}</h2>
 	<div class="columns">
 		<div class="column-50">
 			<tal:block tal:condition="relay/hasCoordinate">
