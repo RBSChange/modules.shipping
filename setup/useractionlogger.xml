@@ -27,4 +27,8 @@
   <actiondef modulename="shipping" actionname="insert.icirelaismode" label="m.shipping.bo.useractionlogger.insert-icirelaismode"/>
   <actiondef modulename="shipping" actionname="update.icirelaismode" label="m.shipping.bo.useractionlogger.update-icirelaismode"/>
   <actiondef modulename="shipping" actionname="insert.relaiscolismode" label="m.shipping.bo.useractionlogger.insert-relaiscolismode"/>
+  <actiondef modulename="shipping" actionname="deletelocalization.relaiscolismode" label="m.shipping.bo.useractionlogger.deletelocalization-relaiscolismode"/>
+  <actiondef modulename="shipping" actionname="deletelocalization.icirelaismode" label="m.shipping.bo.useractionlogger.deletelocalization-icirelaismode"/>
+  <actiondef modulename="shipping" actionname="deletelocalization.mondialrelaymode" label="m.shipping.bo.useractionlogger.deletelocalization-mondialrelaymode"/>
+  <actiondef modulename="shipping" actionname="deletelocalization.kialamode" label="m.shipping.bo.useractionlogger.deletelocalization-kialamode"/>
 </script>

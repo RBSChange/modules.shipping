@@ -6,7 +6,6 @@
 <tal:block change:block="" module="website" name="messages" container="" />
 
 <tal:block tal:condition="not:frameUrl">
-
 	<script change:javascript="head 'modules.shipping.lib.js.relay-shipping'"></script>
 	<script change:javascript="markers relays"></script>
 	
@@ -45,15 +44,12 @@
 	<div class="columns normal-margin js">
 		<div class="column-66">
 			<div id="relays-map" class="relay-map normal" style="width: ${mapWidth}; height: ${mapHeight}" 
-				data-latitude="${mapCenter/latitude}" 
-				data-longitude="${mapCenter/longitude}" 
-				data-zoom="${mapzoom}"></div>
+				data-latitude="${mapCenter/latitude}" data-longitude="${mapCenter/longitude}" data-zoom="${mapzoom}"></div>
 		</div>
 		<div class="column-33">
 			<p class="normal"><button class="button" onclick="relay_CenterToHome()">${trans:m.shipping.general.center-on-me,ucf}</button></p>
 			<form change:form="" id="select-new-relay-form" action="${action}">
-				<div id="relay-over-infos" >
-				</div>
+				<div id="relay-over-infos" ></div>
 				<input type="hidden" name="relayRef" id="select-new-relay-form-relayRef" />
 				<input type="hidden" name="relayCountryCode" id="select-new-relay-form-relayCountryCode" />
 				<input type="hidden" name="relayName" id="select-new-relay-form-relayName" />
@@ -65,19 +61,18 @@
 				<input type="hidden" name="modeId" value="${modeId}" />
 				<input type="hidden" name="${hiddenFieldName}" value="true" />
 				<input change:submit="" name="choose" value="${trans:m.shipping.general.choose-this-relay,attr,ucf}" id="select-new-relay-form-submit" style="display: none;"/>
-			</form>	
+			</form>
 		</div>
 	</div>
 	
-	<div id="relay-list-container" data-static="true" >
+	<div id="relay-list-container" class="normal-margin" data-static="true" >
 		<tal:block change:include="" transmitAll="true" module="shipping" template="Shipping-Action-RelayList-Success" />
 	</div>
-
 </tal:block>
 
 <tal:block tal:condition="frameUrl">
-	<div class="text-align-center">
-		<iframe src="${frameUrl}" allowtransparency="true" framespacing="0" frameborder="no" scrolling="no" width="850" height="500"></iframe>
+	<div class="text-align-center normal-margin">
+		<iframe src="${frameUrl}" allowtransparency="true" framespacing="0" style="overflow: auto; border: none; width: 100%; height: 500px;"></iframe>
 	</div>
 </tal:block>
 

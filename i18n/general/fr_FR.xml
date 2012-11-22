@@ -5,6 +5,7 @@
 	<key id="opening-hours">{hour1} à {hour2}</key>
 	<key id="and">-</key>
 	<key id="informations-relay">informations sur le relais</key>
+	<key id="address-title">adresse</key>
 	<key id="opening-hours-title">heures d'ouvertures</key>
 	<key id="location-hint-title">informations de localisation complémentaires</key>
 	<key id="tracking-title">suivi d'expédition</key>

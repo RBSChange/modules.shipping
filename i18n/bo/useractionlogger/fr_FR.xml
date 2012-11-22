@@ -52,4 +52,12 @@
   <key id="log-update-icirelaismode">log update icirelaismode</key>
   <key id="insert-relaiscolismode">insert.relaiscolismode {lang} {documentlabel}</key>
   <key id="log-insert-relaiscolismode">log insert relaiscolismode</key>
+  <key id="deletelocalization-relaiscolismode">deletelocalization.relaiscolismode {documentlabel} {lang}</key>
+  <key id="log-deletelocalization-relaiscolismode">log deletelocalization relaiscolismode</key>
+  <key id="deletelocalization-icirelaismode">deletelocalization.icirelaismode {documentlabel} {lang}</key>
+  <key id="log-deletelocalization-icirelaismode">log deletelocalization icirelaismode</key>
+  <key id="deletelocalization-mondialrelaymode">deletelocalization.mondialrelaymode {documentlabel} {lang}</key>
+  <key id="log-deletelocalization-mondialrelaymode">log deletelocalization mondialrelaymode</key>
+  <key id="deletelocalization-kialamode">deletelocalization.kialamode {documentlabel} {lang}</key>
+  <key id="log-deletelocalization-kialamode">log deletelocalization kialamode</key>
 </i18n>
