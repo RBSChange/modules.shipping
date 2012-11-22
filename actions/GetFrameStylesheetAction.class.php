@@ -5,7 +5,9 @@
  */
 abstract class shipping_GetFrameStylesheetAction extends f_action_BaseAction
 {
-	
+	/**
+	 * @return string
+	 */
 	abstract protected function getStylesheetName();
 	
 	/**
@@ -21,6 +23,9 @@ abstract class shipping_GetFrameStylesheetAction extends f_action_BaseAction
 		return View::NONE;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function isSecure()
 	{
 		return false;

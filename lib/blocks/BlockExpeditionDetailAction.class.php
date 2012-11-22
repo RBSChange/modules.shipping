@@ -5,14 +5,30 @@
  */
 abstract class shipping_BlockExpeditionDetailAction extends website_BlockAction
 {
-	protected $expedition = null;
+	/**
+	 * @var order_persistentdocument_expedition
+	 */
+	protected $expedition;
 	
+	/**
+	 * @var array
+	 */
 	protected $param = array();
 	
+	/**
+	 * Initialize $this->param
+	 */
 	abstract protected function init();
 	
+	/**
+	 * @return shipping_Relay
+	 */
 	abstract protected function getRelayDetail();
-	
+
+	/**
+	 * @param string $trackingNumber
+	 * @return array
+	 */
 	abstract protected function getTrackingDetail($trackingNumber);
 	
 	/**
@@ -31,7 +47,7 @@ abstract class shipping_BlockExpeditionDetailAction extends website_BlockAction
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -79,16 +95,15 @@ abstract class shipping_BlockExpeditionDetailAction extends website_BlockAction
 				$trackingDetail = $this->getTrackingDetail($trackingNumber);
 				$trackingByPacket[$trackingNumber] = $trackingDetail;
 			}
-		
 		}
 		$request->setAttribute('packetByExpedition', $packetByExpedition);
 		$request->setAttribute('trackingByPacket', $trackingByPacket);
 		
 		return $this->getView(website_BlockView::SUCCESS);
 	}
-
+	
 	/**
-	 * @param $shortViewName
+	 * @param string $shortViewName
 	 * @throws TemplateNotFoundException if template could not be found in current module and comment module
 	 * @return TemplateObject
 	 */
@@ -102,5 +117,4 @@ abstract class shipping_BlockExpeditionDetailAction extends website_BlockAction
 		$templateName = 'Shipping-Block-ExpeditionDetail-' . $shortViewName;
 		return $this->getTemplateByFullName('modules_shipping', $templateName);
 	}
-	
 }

@@ -5,7 +5,10 @@
  */
 class shipping_SelectRelayAction extends f_action_BaseAction
 {
-	
+	/**
+	 * @param integer $modeId
+	 * @return shipping_persistentdocument_mode|NULL
+	 */
 	protected function getMode($modeId)
 	{
 		$mode = DocumentHelper::getDocumentInstanceIfExists($modeId);
@@ -16,41 +19,65 @@ class shipping_SelectRelayAction extends f_action_BaseAction
 		return null;
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayCodeParamName()
 	{
 		return 'relayRef';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayCountryCodeParamName()
 	{
 		return 'relayCountryCode';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayNameParamName()
 	{
 		return 'relayName';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayAddress1ParamName()
 	{
 		return 'relayAddressLine1';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayAddress2ParamName()
 	{
 		return 'relayAddressLine2';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayAddress3ParamName()
 	{
 		return 'relayAddressLine3';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayZipCodeParamName()
 	{
 		return 'relayZipCode';
 	}
 	
+	/**
+	 * @return string
+	 */
 	protected function getRelayCityParamName()
 	{
 		return 'relayCity';
@@ -104,6 +131,9 @@ class shipping_SelectRelayAction extends f_action_BaseAction
 		return View::NONE;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function isSecure()
 	{
 		return false;

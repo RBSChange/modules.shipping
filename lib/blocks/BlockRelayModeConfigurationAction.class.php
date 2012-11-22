@@ -1,11 +1,13 @@
 <?php
 /**
  * shipping_BlockRelayModeConfigurationAction
- * @package modules.shipping.lib.blocks
+ * @package modules.shipping
  */
 class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingModeConfigurationBaseAction
 {
-	
+	/**
+	 * @var array
+	 */
 	protected $param = array();
 	
 	/**
@@ -21,7 +23,7 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function execute($request, $response)
 	{
@@ -39,7 +41,6 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 		}
 		
 		$cart = $request->getParameter('cart');
-		
 		if ($cart instanceof order_CartInfo)
 		{
 			$sAddr = $this->getShippingAddress($cart);
@@ -81,7 +82,7 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 			}
 			else
 			{
-				$request->setAttribute("frameUrl", $frameUrl);
+				$request->setAttribute('frameUrl', $frameUrl);
 			}
 			
 			// hiddenFieldName will enable us to return to shipping step and validate/check shipping mode
@@ -90,13 +91,12 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 		}
 		
 		return $this->getView(website_BlockView::SUCCESS);
-	
 	}
 	
 	/**
 	 * @param f_mvc_Request $request
 	 * @param f_mvc_Response $response
-	 * @return String
+	 * @return string
 	 */
 	public function executeFilter($request, $response)
 	{
@@ -194,7 +194,7 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 	
 	/**
 	 * Get the action url to select a relay
-	 * @return Ambigous <string, NULL>
+	 * @return string|null
 	 */
 	protected function selectRelayActionUrl()
 	{
@@ -202,9 +202,9 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 	}
 	
 	/**
-	 * Must be override
+	 * Must be overrided
 	 * Return the list of shipping_Relay
-	 * @return array<shipping_Relay>
+	 * @return shipping_Relay[]|null
 	 */
 	protected function buildRelayList()
 	{
@@ -212,7 +212,7 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 	}
 	
 	/**
-	 * Must be override
+	 * Must be overrided
 	 * Return the url of iframe
 	 * @return string
 	 */
@@ -220,5 +220,4 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 	{
 		return null;
 	}
-
 }
