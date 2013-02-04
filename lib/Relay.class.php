@@ -1,8 +1,6 @@
 <?php
-
 class shipping_Relay
 {
-	
 	public $ref;
 	public $distance;
 	public $name;
@@ -18,6 +16,7 @@ class shipping_Relay
 	public $mapUrl;
 	public $pictureUrl;
 	public $openingHours;
+	public $iconUrl;
 	
 	/**
 	 * @return field_type
@@ -36,7 +35,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getName()
 	{
@@ -44,7 +43,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getAddressLine1()
 	{
@@ -52,7 +51,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getAddressLine2()
 	{
@@ -60,7 +59,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getAddressLine3()
 	{
@@ -68,7 +67,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getLocationHint()
 	{
@@ -76,7 +75,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getZipCode()
 	{
@@ -84,7 +83,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getCity()
 	{
@@ -108,7 +107,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getMapUrl()
 	{
@@ -116,7 +115,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getPictureUrl()
 	{
@@ -124,7 +123,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return array
 	 */
 	public function getOpeningHours()
 	{
@@ -132,7 +131,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $ref
+	 * @param string $ref
 	 */
 	public function setRef($ref)
 	{
@@ -148,7 +147,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $name
+	 * @param string $name
 	 */
 	public function setName($name)
 	{
@@ -156,7 +155,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $addressLine1
+	 * @param string $addressLine1
 	 */
 	public function setAddressLine1($addressLine1)
 	{
@@ -164,7 +163,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $addressLine2
+	 * @param string $addressLine2
 	 */
 	public function setAddressLine2($addressLine2)
 	{
@@ -172,7 +171,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $addressLine3
+	 * @param string $addressLine3
 	 */
 	public function setAddressLine3($addressLine3)
 	{
@@ -180,7 +179,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $locationHint
+	 * @param string $locationHint
 	 */
 	public function setLocationHint($locationHint)
 	{
@@ -188,7 +187,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $zipCode
+	 * @param string $zipCode
 	 */
 	public function setZipCode($zipCode)
 	{
@@ -196,7 +195,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $city
+	 * @param string $city
 	 */
 	public function setCity($city)
 	{
@@ -220,7 +219,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $mapUrl
+	 * @param string $mapUrl
 	 */
 	public function setMapUrl($mapUrl)
 	{
@@ -228,7 +227,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $pictureUrl
+	 * @param string $pictureUrl
 	 */
 	public function setPictureUrl($pictureUrl)
 	{
@@ -236,7 +235,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $openingHours
+	 * @param array $openingHours
 	 */
 	public function setOpeningHours($openingHours)
 	{
@@ -244,7 +243,7 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @return field_type
+	 * @return string
 	 */
 	public function getCountryCode()
 	{
@@ -252,16 +251,34 @@ class shipping_Relay
 	}
 	
 	/**
-	 * @param field_type $countryCode
+	 * @param string $countryCode
 	 */
 	public function setCountryCode($countryCode)
 	{
 		$this->countryCode = $countryCode;
 	}
 	
+	/**
+	 * @return string
+	 */
+	public function getIconUrl()
+	{
+		return $this->iconUrl;
+	}
+	
+	/**
+	 * @param string $iconUrl
+	 */
+	public function setIconUrl($iconUrl)
+	{
+		$this->iconUrl = $iconUrl;
+	}
+	
+	/**
+	 * @return string
+	 */
 	public function getAddress()
 	{
-		
 		$string = $this->getName() . PHP_EOL;
 		$string .= $this->getAddressLine1() . PHP_EOL;
 		if ($this->getAddressLine2())
@@ -274,14 +291,19 @@ class shipping_Relay
 		}
 		$string .= $this->getZipCode() . ' ' . $this->getCity() . PHP_EOL;
 		return $string;
-	
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getAddressAsHtml()
 	{
 		return f_util_HtmlUtils::textToHtml($this->getAddress());
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function hasCoordinate()
 	{
 		if ($this->longitude != null && $this->latitude != null)
@@ -290,7 +312,4 @@ class shipping_Relay
 		}
 		return false;
 	}
-
 }
-
-?>
