@@ -31,4 +31,11 @@
   <actiondef modulename="shipping" actionname="deletelocalization.icirelaismode" label="m.shipping.bo.useractionlogger.deletelocalization-icirelaismode"/>
   <actiondef modulename="shipping" actionname="deletelocalization.mondialrelaymode" label="m.shipping.bo.useractionlogger.deletelocalization-mondialrelaymode"/>
   <actiondef modulename="shipping" actionname="deletelocalization.kialamode" label="m.shipping.bo.useractionlogger.deletelocalization-kialamode"/>
+  <actiondef modulename="shipping" actionname="move.kialamode" label="m.shipping.bo.useractionlogger.move-kialamode"/>
+  <actiondef modulename="shipping" actionname="insert.kialadspid" label="m.shipping.bo.useractionlogger.insert-kialadspid"/>
+  <actiondef modulename="shipping" actionname="deactivated.kialadspid" label="m.shipping.bo.useractionlogger.deactivated-kialadspid"/>
+  <actiondef modulename="shipping" actionname="reactivate.kialadspid" label="m.shipping.bo.useractionlogger.reactivate-kialadspid"/>
+  <actiondef modulename="shipping" actionname="update.kialadspid" label="m.shipping.bo.useractionlogger.update-kialadspid"/>
+  <actiondef modulename="shipping" actionname="deactivated.kialamode" label="m.shipping.bo.useractionlogger.deactivated-kialamode"/>
+  <actiondef modulename="shipping" actionname="reactivate.kialamode" label="m.shipping.bo.useractionlogger.reactivate-kialamode"/>
 </script>

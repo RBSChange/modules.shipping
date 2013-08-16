@@ -300,4 +300,30 @@ class shipping_ModeService extends f_persistentdocument_DocumentService
 		$suffix = $expedition->getTransporteur();
 		order_ModuleService::getInstance()->sendCustomerSuffixedNotification($codeName, $suffix, $expedition->getOrder(), $expedition->getBill(), $expedition);
 	}
+
+	/**
+	 * @param catalog_persistentdocument_product|catalog_persistentdocument_declinedproduct $product
+	 * @return bool
+	 */
+	public function canShipProductWithMode($product, $mode)
+	{
+		return true;
+	}
+
+	/**
+	 * @param order_CartLineInfo[] $cartLines
+	 * @return bool
+	 */
+	public function canShipCartLinesWithMode($cartLines, $mode)
+	{
+		foreach ($cartLines as $cartLine)
+		{
+			/* @var order_persistentdocument_orderline $orderLine */
+			if (!$this->canShipProductWithMode($cartLine->getProduct(), $mode))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

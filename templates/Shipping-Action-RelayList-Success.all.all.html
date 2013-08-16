@@ -2,7 +2,7 @@
 	<li tal:repeat="relay relays" class="${alternateclass:relayCount}">
 		<div id="${relay/getRef}">
 			<h2 change:h="">
-				<a change:link="document relay">${relay/getName}</a>
+				${relay/getName}
 			</h2>
 
 			<div class="columns">

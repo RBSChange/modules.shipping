@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<i18n baseKey="m.shipping.list" lcid="fr_FR">
+  <key id="modes-label">liste des modes de livraison</key>
+  <key id="modes-description">liste des modes de livraison déclarés dans le module "Modes de livraison"</key>
+</i18n>

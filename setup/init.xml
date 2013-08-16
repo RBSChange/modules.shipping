@@ -2,7 +2,10 @@
 <script>
 	<binding fileName="modules/list/persistentdocument/import/list_binding.xml" />
 	<systemfolder module="list" relatedmodule="shipping">
-		<dynamiclist listid="modules_shipping/virtualmodes"
+		<dynamiclist byListid="modules_shipping/virtualmodes"
 			label="Mode de livraison virtuel" />
+        <dynamiclist byListid="modules_shipping/modes"
+                     label="m.shipping.list.modes-label"
+                     description="m.shipping.list.modes-description" />
 	</systemfolder>
 </script>

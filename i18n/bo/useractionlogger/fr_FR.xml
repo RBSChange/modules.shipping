@@ -60,4 +60,18 @@
   <key id="log-deletelocalization-mondialrelaymode">log deletelocalization mondialrelaymode</key>
   <key id="deletelocalization-kialamode">deletelocalization.kialamode {documentlabel} {lang}</key>
   <key id="log-deletelocalization-kialamode">log deletelocalization kialamode</key>
+  <key id="move-kialamode">move.kialamode {destinationlabel} {lang} {documentlabel}</key>
+  <key id="log-move-kialamode">log move kialamode</key>
+  <key id="insert-kialadspid">insert.kialadspid {documentlabel}</key>
+  <key id="log-insert-kialadspid">log insert kialadspid</key>
+  <key id="deactivated-kialadspid">deactivated.kialadspid {documentlabel}</key>
+  <key id="log-deactivated-kialadspid">log deactivated kialadspid</key>
+  <key id="reactivate-kialadspid">reactivate.kialadspid {documentlabel}</key>
+  <key id="log-reactivate-kialadspid">log reactivate kialadspid</key>
+  <key id="update-kialadspid">update.kialadspid {documentlabel}</key>
+  <key id="log-update-kialadspid">log update kialadspid</key>
+  <key id="deactivated-kialamode">deactivated.kialamode {lang} {documentlabel}</key>
+  <key id="log-deactivated-kialamode">log deactivated kialamode</key>
+  <key id="reactivate-kialamode">reactivate.kialamode {lang} {documentlabel}</key>
+  <key id="log-reactivate-kialamode">log reactivate kialamode</key>
 </i18n>
