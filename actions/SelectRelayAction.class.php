@@ -98,13 +98,13 @@ class shipping_SelectRelayAction extends f_action_BaseAction
 		$service = order_ShippingModeConfigurationService::getInstance();
 		$service->setConfiguration($cart, $modeId, 'relayCodeReference', f_util_StringUtils::cleanString($request->getParameter($this->getRelayCodeParamName(), null)));
 		$service->setConfiguration($cart, $modeId, 'relayCountryCode', f_util_StringUtils::cleanString($request->getParameter($this->getRelayCountryCodeParamName(), null)));
-		$service->setConfiguration($cart, $modeId, 'relayName', f_util_StringUtils::cleanString($request->getParameter($this->getRelayNameParamName(), null)));
-		$service->setConfiguration($cart, $modeId, 'relayAddressLine1', f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress1ParamName(), null)));
-		$service->setConfiguration($cart, $modeId, 'relayAddressLine2', f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress2ParamName(), null)));
-		$service->setConfiguration($cart, $modeId, 'relayAddressLine3', f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress3ParamName(), null)));
+		$service->setConfiguration($cart, $modeId, 'relayName', f_util_StringUtils::toUpper(f_util_StringUtils::cleanString($request->getParameter($this->getRelayNameParamName(), null))));
+		$service->setConfiguration($cart, $modeId, 'relayAddressLine1', f_util_StringUtils::ucfirst(f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress1ParamName(), null))));
+		$service->setConfiguration($cart, $modeId, 'relayAddressLine2', f_util_StringUtils::ucfirst(f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress2ParamName(), null))));
+		$service->setConfiguration($cart, $modeId, 'relayAddressLine3', f_util_StringUtils::ucfirst(f_util_StringUtils::cleanString($request->getParameter($this->getRelayAddress3ParamName(), null))));
 		$service->setConfiguration($cart, $modeId, 'relayZipCode', f_util_StringUtils::cleanString($request->getParameter($this->getRelayZipCodeParamName(), null)));
-		$service->setConfiguration($cart, $modeId, 'relayCity', f_util_StringUtils::cleanString($request->getParameter($this->getRelayCityParamName(), null)));
-		
+		$service->setConfiguration($cart, $modeId, 'relayCity', f_util_StringUtils::ucfirst(f_util_StringUtils::cleanString($request->getParameter($this->getRelayCityParamName(), null))));
+
 		$mode = $this->getMode($modeId);
 		
 		if ($mode != null)

@@ -312,4 +312,44 @@ class shipping_Relay
 		}
 		return false;
 	}
+
+	/**
+	 * @return String
+	 */
+	public function getNameAsJs()
+	{
+		return f_util_StringUtils::quoteSingle($this->getName());
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getAddressLine1AsJs()
+	{
+		return f_util_StringUtils::quoteSingle($this->getAddressLine1());
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getAddressLine2AsJs()
+	{
+		return f_util_StringUtils::quoteSingle($this->getAddressLine2());
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getAddressLine3AsJs()
+	{
+		return f_util_StringUtils::quoteSingle($this->getAddressLine3());
+	}
+
+	/**
+	 * @return String
+	 */
+	public function getCityAsJs()
+	{
+		return f_util_StringUtils::quoteSingle($this->getCity());
+	}
 }
