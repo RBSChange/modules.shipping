@@ -5,6 +5,15 @@
  */
 class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingModeConfigurationBaseAction
 {
+	const P_ADDRESS = 'address';
+	const P_ZIP_CODE = 'zipcode';
+	const P_CITY = 'city';
+	const P_COUNTRY = 'country';
+	const P_COUNTRY_CODE = 'countryCode';
+	const P_MODE = 'mode';
+	const P_SHIPPING_ADDRESS = 'shippingAddress';
+	const P_LANG = 'lang';
+
 	/**
 	 * @var array
 	 */
@@ -48,15 +57,14 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 			$zipCode = $sAddr->getZipCode();
 			$city = $sAddr->getCity();
 			$country = $sAddr->getCountryid();
-			$countryLabel = $sAddr->getCountryidLabel();
-			
-			$this->param['address'] = $address;
-			$this->param['zipcode'] = $zipCode;
-			$this->param['city'] = $city;
-			$this->param['country'] = $country;
-			$this->param['countryCode'] = $sAddr->getCountryCode();
-			$this->param['mode'] = $request->getParameter('mode');
-			$this->param['shippingAddress'] = $sAddr;
+
+			$this->param[self::P_ADDRESS] = $address;
+			$this->param[self::P_ZIP_CODE] = $zipCode;
+			$this->param[self::P_CITY] = $city;
+			$this->param[self::P_COUNTRY] = $country;
+			$this->param[self::P_COUNTRY_CODE] = $sAddr->getCountryCode();
+			$this->param[self::P_MODE] = $request->getParameter('mode');
+			$this->param[self::P_SHIPPING_ADDRESS] = $sAddr;
 			
 			$frameUrl = $this->buildFrameUrl();
 			if ($frameUrl == null)
@@ -65,16 +73,8 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 				$request->setAttribute('zipcode', $zipCode);
 				$request->setAttribute('city', $city);
 				$request->setAttribute('country', $country);
-				
-				$location = $address . ' ' . $zipCode . ' ' . $city . ' ' . $countryLabel;
-				
-				list ($latitude, $longitude) = gmaps_ModuleService::getInstance()->getCoordinatesForAddress($location);
-				$request->setAttribute('mapCenter', array('latitude' => $latitude, 'longitude' => $longitude));
-				
-				$request->setAttribute('mapzoom', 11);
-				$request->setAttribute('mapHeight', '400px');
-				$request->setAttribute('mapWidth', '100%');
-				
+
+				$this->setMapParams($request, $this->param);
 				$relays = $this->buildRelayList();
 				$request->setAttribute('relays', $relays);
 				
@@ -120,7 +120,6 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 		{
 			$country = zone_persistentdocument_country::getInstanceById($countryId);
 			$countryCode = $country->getCode();
-			$countryLabel = $country->getLabel();
 		}
 		else
 		{
@@ -129,24 +128,16 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 			{
 				$country = zone_CountryService::getInstance()->getByCode($countryCode);
 			}
-			$countryLabel = $countryCode;
 		}
 		
-		$this->param['address'] = $address;
-		$this->param['zipcode'] = $zipCode;
-		$this->param['city'] = $city;
-		$this->param['country'] = $countryId;
-		$this->param['countryCode'] = $countryCode;
-		$this->param['mode'] = $mode;
+		$this->param[self::P_ADDRESS] = $address;
+		$this->param[self::P_ZIP_CODE] = $zipCode;
+		$this->param[self::P_CITY] = $city;
+		$this->param[self::P_COUNTRY] = $countryId;
+		$this->param[self::P_COUNTRY_CODE] = $countryCode;
+		$this->param[self::P_MODE] = $mode;
 		
-		$location = $address . ' ' . $zipCode . ' ' . $city . ' ' . $countryLabel;
-		
-		list ($latitude, $longitude) = gmaps_ModuleService::getInstance()->getCoordinatesForAddress($location);
-		
-		$request->setAttribute('mapCenter', array('latitude' => $latitude, 'longitude' => $longitude));
-		$request->setAttribute('mapHeight', '400px');
-		$request->setAttribute('mapWidth', '100%');
-		
+		$this->setMapParams($request, $this->param);
 		$relays = $this->buildRelayList();
 		$request->setAttribute('relays', $relays);
 		
@@ -154,7 +145,57 @@ class shipping_BlockRelayModeConfigurationAction extends order_BlockShippingMode
 		
 		return $this->getView(website_BlockView::SUCCESS);
 	}
-	
+
+	/**
+	 * Set map params
+	 * @param f_mvc_Request $request
+	 * @param String[] $parameters
+	 */
+	protected function setMapParams($request, $parameters)
+	{
+		$address = $parameters[self::P_ADDRESS];
+		$zipCode = $parameters[self::P_ZIP_CODE];
+		$city = $parameters[self::P_CITY];
+		$countryId = $parameters[self::P_COUNTRY];
+		$countryCode = $parameters[self::P_COUNTRY_CODE];
+
+		$csi = zone_CountryService::getInstance();
+		if (!f_util_StringUtils::isEmpty($countryId))
+		{
+			$country = $csi->getDocumentInstance($countryId);
+		}
+		if ($country == null && !f_util_StringUtils::isEmpty($countryCode))
+		{
+			$country = $csi->getByCode($countryCode);
+		}
+		if ($country != null)
+		{
+			$countryLabel = $country->getLabel();
+		}
+		else if (!f_util_StringUtils::isEmpty($countryCode))
+		{
+			$countryLabel = $countryCode;
+		}
+
+		$location = $address . ' ' . $zipCode . ' ' . $city . ' ' . $countryLabel;
+
+		list ($latitude, $longitude) = gmaps_ModuleService::getInstance()->getCoordinatesForAddress($location);
+
+		$request->setAttribute('mapzoom', $this->getDefaultMapZoom());
+		$request->setAttribute('mapCenter', array('latitude' => $latitude, 'longitude' => $longitude));
+		$request->setAttribute('mapHeight', '400px');
+		$request->setAttribute('mapWidth', '100%');
+	}
+
+	/**
+	 * Get the default zoom for map
+	 * @return Integer
+	 */
+	protected function getDefaultMapZoom()
+	{
+		return 11;
+	}
+
 	/**
 	 * @param order_CartInfo $cart
 	 * @return customer_persistentdocument_address
