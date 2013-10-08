@@ -23,6 +23,6 @@ class shipping_patch_0360 extends patch_BasePatch
 	 */
 	public function execute()
 	{
-        $this->executeLocalXmlScript('init.xml');
+        $this->executeXmlScript('init.xml');
 	}
 }
